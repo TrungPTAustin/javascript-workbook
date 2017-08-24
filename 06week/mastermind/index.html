@@ -4,8 +4,216 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Mastermind</title>
   <link rel="stylesheet" href="style.css" />
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 </head>
 <body>
+  <h1>Welcome to Mastermind</h1>
+  <div class="container">
+    <div class="row" data-row="10">
+      <div class="dots">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+      <div class="hint">
+        <span>hint:&nbsp;</span>
+        <div class="dots">
+          <div class="dot small"></div>
+          <div class="dot small"></div>
+          <div class="dot small"></div>
+          <div class="dot small"></div>
+        </div>
+      </div>
+      <button class="check">Check</button>
+    </div>
+    <div class="row" data-row="9">
+      <div class="dots">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+      <div class="hint">
+        <span>hint:&nbsp;</span>
+        <div class="dots">
+          <div class="dot small"></div>
+          <div class="dot small"></div>
+          <div class="dot small"></div>
+          <div class="dot small"></div>
+        </div>
+      </div>
+      <button class="check">Check</button>
+    </div>
+    <div class="row" data-row="8">
+      <div class="dots">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+      <div class="hint">
+        <span>hint:&nbsp;</span>
+        <div class="dots">
+          <div class="dot small"></div>
+          <div class="dot small"></div>
+          <div class="dot small"></div>
+          <div class="dot small"></div>
+        </div>
+      </div>
+      <button class="check">Check</button>
+    </div>
+    <div class="row" data-row="7">
+      <div class="dots">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+      <div class="hint">
+        <span>hint:&nbsp;</span>
+        <div class="dots">
+          <div class="dot small"></div>
+          <div class="dot small"></div>
+          <div class="dot small"></div>
+          <div class="dot small"></div>
+        </div>
+      </div>
+      <button class="check">Check</button>
+    </div>
+    <div class="row" data-row="6">
+      <div class="dots">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+      <div class="hint">
+        <span>hint:&nbsp;</span>
+        <div class="dots">
+          <div class="dot small"></div>
+          <div class="dot small"></div>
+          <div class="dot small"></div>
+          <div class="dot small"></div>
+        </div>
+      </div>
+      <button class="check">Check</button>
+    </div>
+    <div class="row" data-row="5">
+      <div class="dots">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+      <div class="hint">
+        <span>hint:&nbsp;</span>
+        <div class="dots">
+          <div class="dot small"></div>
+          <div class="dot small"></div>
+          <div class="dot small"></div>
+          <div class="dot small"></div>
+        </div>
+      </div>
+      <button class="check">Check</button>
+    </div>
+    <div class="row" data-row="4">
+      <div class="dots">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+      <div class="hint">
+        <span>hint:&nbsp;</span>
+        <div class="dots">
+          <div class="dot small"></div>
+          <div class="dot small"></div>
+          <div class="dot small"></div>
+          <div class="dot small"></div>
+        </div>
+      </div>
+      <button class="check">Check</button>
+    </div>
+    <div class="row" data-row="3">
+      <div class="dots">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+      <div class="hint">
+        <span>hint:&nbsp;</span>
+        <div class="dots">
+          <div class="dot small"></div>
+          <div class="dot small"></div>
+          <div class="dot small"></div>
+          <div class="dot small"></div>
+        </div>
+      </div>
+      <button class="check">Check</button>
+    </div>
+    <div class="row" data-row="2">
+      <div class="dots">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+      <div class="hint">
+        <span>hint:&nbsp;</span>
+        <div class="dots">
+          <div class="dot small"></div>
+          <div class="dot small"></div>
+          <div class="dot small"></div>
+          <div class="dot small"></div>
+        </div>
+      </div>
+      <button class="check">Check</button>
+    </div>
+    <div class="row" data-row="1">
+      <div class="dots">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+      <div class="hint">
+        <span>hint:&nbsp;</span>
+        <div class="dots">
+          <div class="dot small"></div>
+          <div class="dot small"></div>
+          <div class="dot small"></div>
+          <div class="dot small"></div>
+        </div>
+      </div>
+      <button class="check">Check</button>
+    </div>
+
+    <div class="choices">
+      <div class="dots">
+        <div class="dot" data-letter="a"></div>
+        <div class="dot" data-letter="b"></div>
+        <div class="dot" data-letter="c"></div>
+        <div class="dot" data-letter="d"></div>
+        <div class="dot" data-letter="e"></div>
+        <div class="dot" data-letter="f"></div>
+        <div class="dot" data-letter="g"></div>
+        <div class="dot" data-letter="h"></div>
+      </div>
+
+      <div class="selection">
+        <div class="dot"></div>
+      </div>
+    </div>
+
+    <div class="control">
+      <button id="clear">Clear</button>
+      <div id="message"></div>
+    </div>
+
+  </div>
+
   <script type="text/javascript" src="./script.js"></script>
 </body>
 </html>
