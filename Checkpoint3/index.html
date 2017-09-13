@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <script src="https://unpkg.com/react@15.3.2/dist/react.js"></script>
+  <script src="https://unpkg.com/react-dom@15.3.2/dist/react-dom.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+  <script src="https://npmcdn.com/react-router@3.0.2/umd/ReactRouter.min.js"></script>
+  <link rel="stylesheet" href="index.css" />
+</head>
+
+<body>
+
+  <div id="container">
+
+  </div>
+
+  <script type="text/babel">
+	var { Router,
+	Route,
+	IndexRoute,
+	IndexLink,
+	hashHistory,
+	Link } = ReactRouter;
+    var destination = document.querySelector("#container")
+    var App = React.createClass({
+      render: function() {
+        return (
+          <div>
+            <h1>Your Farmers Markets HQ</h1>
+            <ul className="header">
+            <li><Link activeClassName="active" to="/">Home</Link></li>
+            <li><Link activeClassName="active" to="/stuff">About</Link></li>
+            <li><Link activeClassName="active" to="/contact">Contact</Link></li>
+            <li><Link activeClassName="active" to="/search">Search</Link></li>
+            </ul>
+            <div className="content">
+               {this.props.children}
+            </div>
+          </div>
+        )
+      }
+    });
+    var Home = React.createClass({
+      render: function() {
+          return (
+            <div>
+              <h2>KNOW BEFORE YOU GO</h2>
+              <p>Check the weather, traffic, and more before heading out to your local farmers markets</p>
+            </div>
+          );
+        }
+    });
+    var Contact = React.createClass({
+  render: function() {
+      return (
+        <div>
+          <h2>GOT QUESTIONS?</h2>
+          <p>The easiest thing to do is to check us out
+          our <a href="https://search.ams.usda.gov/farmersmarkets/v1/data.svc/zipSearch?zip=78731"> courses</a>.
+          </p>
+        </div>
+      );
+    }
+});
+var Stuff = React.createClass({
+  render: function() {
+      return (
+        <div>
+          <h2>ABOUT</h2>
+          <ol>
+            <li>Who We Are</li>
+            <li>Donation Information</li>
+            <li>Coupons</li>
+            <li>Volunteer</li>
+            <li>And much more!</li>
+          </ol>
+        </div>
+      );
+    }
+});
+
+class FarmersMarketList extends React.Component {
+  constructor(props) {
+    super(props);
+
+    // props.list = []
+  }
+
+  render() {
+    const list = this.props.list.map((item) => {
+      return <li>{item.marketname}</li>;
+    });
+
+    // return a dom element
+    return (
+      <div>
+        <ul>
+          {list}
+        </ul>
+      </div>
+    );
+  }
+}
+
+var Fetch = React.createClass ({
+	getInitialState: function() {
+		return {
+			zipCode: '',
+			list: []
+		};
+	},
+
+  handleChange: function(e){
+    this.setState({zipCode:e.target.value});
+  },
+
+	handleSubmit: function(e){
+		fetch('https://search.ams.usda.gov/farmersmarkets/v1/data.svc/zipSearch?zip=' + this.state.zipCode)
+      .then((response) => {
+        response.json().then((json) => {
+          this.state.farmersmarketlist = json.results;
+          this.setState(this.state);
+		    })
+      });
+	},
+
+  render: function() {
+    let farmersmarketlist;
+    if (this.state.farmersmarketlist) {
+      farmersmarketlist = <FarmersMarketList list={this.state.farmersmarketlist} />
+    } else {
+      farmersmarketlist = '';
+    }
+    return (
+      <div>
+        <h2>Enter Zip Code</h2>
+        Search:<br/>
+        <input type="text" onChange={this.handleChange} />
+        <br/>
+        <button type="submit" onClick={this.handleSubmit}>Submit</button>
+  	    <hr/>
+        {farmersmarketlist}
+      </div>
+    );
+  }
+});
+
+ReactDOM.render(
+<Router history={hashHistory}>
+  <Route path="/" component={App}>
+    <IndexRoute component={Home}/>
+    <Route path="stuff" component={Stuff} />
+    <Route path="contact" component={Contact} />
+    <Route path="search" component={Fetch} />
+  </Route>
+</Router>,
+destination
+);
+  </script>
+</body>
+
+</html>
